@@ -5,6 +5,19 @@ import { OnClickOutside } from "@vueuse/components";
 import { ref } from "vue";
 
 const isPopupVisible = ref(false);
+
+const props = defineProps({
+  modelValue: {
+    type: String,
+    default: "",
+  },
+});
+
+const emit = defineEmits<(e: "update:modelValue", v: string) => void>();
+
+function handleEmojiClick(emoji: string) {
+  emit("update:modelValue", props.modelValue + emoji);
+}
 </script>
 
 <template>
@@ -19,7 +32,7 @@ const isPopupVisible = ref(false);
       class="emoji-cont rounded w-72 h-80 absolute right-0 bg-gray-700 shadow-lg"
     >
       <OnClickOutside @trigger="isPopupVisible = false">
-        <EmojiPopup />
+        <EmojiPopup @emoji_click="handleEmojiClick" />
       </OnClickOutside>
     </div>
   </div>
