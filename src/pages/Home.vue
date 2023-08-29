@@ -23,6 +23,12 @@ function handleMessageSubmit() {
 }
 
 watchEffect(() => {
+  if (status.value !== "connected") {
+    text.value = "";
+  }
+});
+
+watchEffect(() => {
   if (messageBox.value) {
     messageBox.value.scrollTo(0, messageBox.value.scrollHeight);
   }
@@ -96,6 +102,7 @@ watchEffect(() => {
       >
         <div class="w-full py-2 h-full flex items-center">
           <TextArea
+            :disabled="status !== 'connected'"
             @submit="handleMessageSubmit"
             v-model="text"
             placeholder="Message..."

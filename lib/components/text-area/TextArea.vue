@@ -11,6 +11,10 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const emit = defineEmits<{
@@ -57,6 +61,7 @@ watch(
     @click="areaRef?.focus()"
   >
     <textarea
+      :disabled="disabled"
       @keydown="handleKeyDown"
       :value="modelValue"
       contenteditable="true"
