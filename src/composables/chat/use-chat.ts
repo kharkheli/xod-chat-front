@@ -10,7 +10,7 @@ export default function () {
     "disconnected",
   );
 
-  const socket = io("http://localhost:3001/");
+  const socket = io("https://xod-chat-32pzq.ondigitalocean.app/");
 
   socket.on("connect", () => {
     console.log("connected");
