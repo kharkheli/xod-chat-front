@@ -16,7 +16,9 @@ defineProps({
 
 const timeStamp = (date: string) => {
   const time = new Date(date);
-  return `${time.getHours()}:${time.getMinutes()}`;
+  return `${(time.getHours() + "").padStart(2, "0")}:${(
+    time.getMinutes() + ""
+  ).padStart(2, "0")}`;
 };
 </script>
 
