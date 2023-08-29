@@ -24,7 +24,7 @@ function handleEmojiClick(emoji: string) {
   <div class="relative w-8 h-8">
     <EmojiIcon
       @click="isPopupVisible = !isPopupVisible"
-      class="cursor-pointer text-gray-400 hover:text-blue-400 w-8 h-8"
+      class="cursor-pointer text-gray-300 hover:text-blue-400 w-8 h-8"
     />
     <div
       v-if="isPopupVisible"

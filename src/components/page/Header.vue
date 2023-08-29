@@ -5,7 +5,7 @@
     <h3>
       <router-link
         :to="{ name: 'home' }"
-        class="text-white hover:text-gray-400"
+        class="text-white hover:text-gray-300"
       >
         <p class="text-lg font-medium font-mono tracking-widest">Xod-Chat</p>
       </router-link>
