@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import EmojiPopup from "./EmojiPopup.vue";
-import EmojiIcon from "~icons/fluent/emoji-laugh-16-regular";
+import { Icon } from "@iconify/vue";
 import { OnClickOutside } from "@vueuse/components";
 import { ref } from "vue";
 
@@ -22,7 +22,8 @@ function handleEmojiClick(emoji: string) {
 
 <template>
   <div class="relative w-8 h-8">
-    <EmojiIcon
+    <Icon
+      icon="fluent:emoji-laugh-16-regular"
       @click="isPopupVisible = !isPopupVisible"
       class="cursor-pointer text-gray-300 hover:text-blue-400 w-8 h-8"
     />

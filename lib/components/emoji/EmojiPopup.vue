@@ -1,4 +1,4 @@
-<script>
+<script setup lang="ts">
 /**
  * Emoji Picker
  * Load emojis and  categories from the json file 'emojis-data.json'
@@ -10,30 +10,27 @@
 
 import data from "./emojis-data.json";
 
-export default {
-  props: {
-    show_arrow: {
-      type: Boolean,
-      required: false,
-      default: true,
-    },
+defineProps({
+  show_arrow: {
+    type: Boolean,
+    required: false,
+    default: true,
   },
-  computed: {
-    categories() {
-      return Object.keys(data);
-    },
+});
 
-    category_emojis: () => (category) => {
-      return Object.values(data[category]);
-    },
-  },
-  methods: {
-    handleEmojiClick(e, emoji) {
-      e.preventDefault();
-      this.$emit("emoji_click", emoji);
-    },
-  },
+const categories = Object.keys(data);
+
+const category_emojis = (category: string): any[] => {
+  // @ts-ignore
+  return Object.values(data[category]);
 };
+
+const emit = defineEmits(["emoji_click"]);
+
+function handleEmojiClick(e: MouseEvent, emoji: string) {
+  e.preventDefault();
+  emit("emoji_click", emoji);
+}
 </script>
 
 <template>
@@ -47,8 +44,8 @@ export default {
         <span>{{ category }}</span>
         <div class="emojis_container">
           <button
-            @click="handleEmojiClick($event, emoji)"
             v-for="(emoji, index) in category_emojis(category)"
+            @click="handleEmojiClick($event, emoji)"
             :key="`emoji_${index}`"
           >
             {{ emoji }}
