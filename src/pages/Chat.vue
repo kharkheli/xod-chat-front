@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import EmojiPicker from "../../lib/components/text-area/TextArea.vue";
+import EmojiPicker from "../../lib/components/emoji/EmojiPicker.vue";
 import TextArea from "../../lib/components/text-area/TextArea.vue";
 import { Icon } from "@iconify/vue";
 import { ref, watchEffect } from "vue";
