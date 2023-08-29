@@ -9,15 +9,11 @@ export default function () {
   const status = ref<"connected" | "disconnected" | "connecting">(
     "disconnected",
   );
+  const audioMessage = new Audio("audio.mp3");
 
   const socket = io("https://xod-chat-32pzq.ondigitalocean.app/");
 
-  socket.on("connect", () => {
-    console.log("connected");
-  });
-
   socket.on("welcome", (user: Sender) => {
-    console.log("welcome");
     me.value = user;
   });
 
@@ -28,6 +24,7 @@ export default function () {
   });
 
   socket.on("chat message", (message: MessageData) => {
+    audioMessage.play();
     messages.value.push(message);
     socket.emit("delivered", message.id);
   });

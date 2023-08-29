@@ -37,7 +37,7 @@ watchEffect(() => {
 
 <template>
   <div class="h-full flex flex-row">
-    <div class="w-80 border-r border-gray-600"></div>
+    <div class="hidden sm:block w-80 border-r border-gray-600"></div>
     <div class="flex flex-col w-full">
       <div
         class="flex text-gray-300 px-5 items-center h-14 shrink-0 border-b border-gray-600"
