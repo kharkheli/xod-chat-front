@@ -73,6 +73,11 @@ export default function () {
     muted.value = !muted.value;
   }
 
+  function disconnect() {
+    socket.emit("disconnected");
+    status.value = "disconnected";
+  }
+
   return {
     messages,
     me,
@@ -83,5 +88,6 @@ export default function () {
     toggleMute,
     muted,
     userCount,
+    disconnect,
   };
 }
