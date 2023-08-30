@@ -6,6 +6,7 @@ export default function () {
   const messages = ref<MessageData[]>([]);
   const me = ref<Sender>();
   const friend = ref<Sender>();
+  const userCount = ref(0);
   const status = ref<"connected" | "disconnected" | "connecting">(
     "disconnected",
   );
@@ -13,10 +14,14 @@ export default function () {
 
   const audioMessage = new Audio("audio.mp3");
 
-  const socket = io("https://xod-chat-32pzq.ondigitalocean.app/");
-
+  // const socket = io("https://xod-chat-32pzq.ondigitalocean.app/");
+  const socket = io("http://localhost:3001");
   socket.on("welcome", (user: Sender) => {
     me.value = user;
+  });
+
+  socket.on("user-count", (count: number) => {
+    userCount.value = count;
   });
 
   socket.on("new chat", (user) => {
@@ -77,5 +82,6 @@ export default function () {
     findFriend,
     toggleMute,
     muted,
+    userCount,
   };
 }
