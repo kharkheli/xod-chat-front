@@ -19,6 +19,7 @@ const {
   toggleMute,
   muted,
   userCount,
+  disconnect,
 } = useChat();
 
 function handleMessageSubmit() {
@@ -63,7 +64,8 @@ watchEffect(() => {
       >
         <div class="absolute right-5 flex">
           <p>
-            online users: <span class="font-medium">{{ userCount }}</span>
+            აქტიური მომხმარებელი:
+            <span class="font-medium">{{ userCount }}</span>
           </p>
         </div>
         <div v-if="friend !== undefined" class="flex gap-2 items-center w-full">
@@ -88,10 +90,18 @@ watchEffect(() => {
             "
             class="w-6 h-6 text-blue-400 cursor-pointer"
           />
+          <div v-if="status === 'connected'" class="pl-5">
+            <button
+              @click="disconnect"
+              class="text-gray-200 bg-orange-400 p-1 rounded-md"
+            >
+              გათიშვა
+            </button>
+          </div>
         </div>
         <div v-else class="w-full">
           <h5 class="text-center font-medium text-lg">
-            click find a friend to get started
+            დააჭირე მოძებნას რომ იპოვო პარტნიორი
           </h5>
         </div>
       </div>
@@ -105,16 +115,16 @@ watchEffect(() => {
             class="text-center bg-red-500 px-5 py-2"
           >
             <span class="pr-3 text-white font-medium text-lg"
-              >You are disconnected</span
+              >მარტო ხარ დარჩენილი</span
             >
             <button @click="findFriend" class="bg-green-400 p-1 rounded-md">
-              Find a Friend
+              მოძებნე პარტნიორი
             </button>
           </div>
           <div v-else-if="status === 'connecting'">
             <div class="text-center bg-yellow-500 px-5 py-2">
               <span class="pr-3 text-white font-medium text-lg"
-                >Connecting...</span
+                >იძებნება...</span
               >
             </div>
           </div>
@@ -136,7 +146,7 @@ watchEffect(() => {
             :disabled="status !== 'connected'"
             @submit="handleMessageSubmit"
             v-model="text"
-            placeholder="Message..."
+            placeholder="მესიჯი..."
           ></TextArea>
         </div>
         <div
