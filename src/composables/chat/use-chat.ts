@@ -9,6 +9,8 @@ export default function () {
   const status = ref<"connected" | "disconnected" | "connecting">(
     "disconnected",
   );
+  const muted = ref(false);
+
   const audioMessage = new Audio("audio.mp3");
 
   const socket = io("https://xod-chat-32pzq.ondigitalocean.app/");
@@ -24,7 +26,7 @@ export default function () {
   });
 
   socket.on("chat message", (message: MessageData) => {
-    audioMessage.play();
+    if (!muted.value) audioMessage.play();
     messages.value.push(message);
     socket.emit("delivered", message.id);
   });
@@ -62,6 +64,10 @@ export default function () {
     socket.emit("find friend");
   }
 
+  function toggleMute() {
+    muted.value = !muted.value;
+  }
+
   return {
     messages,
     me,
@@ -69,5 +75,7 @@ export default function () {
     status,
     sendMessage,
     findFriend,
+    toggleMute,
+    muted,
   };
 }

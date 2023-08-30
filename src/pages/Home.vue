@@ -9,7 +9,16 @@ import useChat from "../composables/chat/use-chat";
 const text = ref("");
 const messageBox = ref<HTMLElement | null>(null);
 
-const { sendMessage, messages, me, status, friend, findFriend } = useChat();
+const {
+  sendMessage,
+  messages,
+  me,
+  status,
+  friend,
+  findFriend,
+  toggleMute,
+  muted,
+} = useChat();
 
 function handleMessageSubmit() {
   if (!text.value) {
@@ -40,9 +49,18 @@ watchEffect(() => {
     <div class="hidden sm:block w-80 border-r border-gray-600"></div>
     <div class="flex flex-col w-full">
       <div
-        class="flex text-gray-300 px-5 items-center h-14 shrink-0 border-b border-gray-600"
+        class="relative flex text-gray-300 px-5 items-center h-14 shrink-0 border-b border-gray-600"
       >
-        <div v-if="friend !== undefined" class="flex gap-2 items-center">
+        <div class="absolute right-5">
+          <Icon
+            @click="toggleMute"
+            :icon="
+              muted ? 'teenyicons:sound-off-solid' : 'teenyicons:sound-on-solid'
+            "
+            class="w-6 h-6 text-blue-400 cursor-pointer"
+          />
+        </div>
+        <div v-if="friend !== undefined" class="flex gap-2 items-center w-full">
           <div class="relative w-8 h-8 object-cover rounded-full">
             <div
               class="w-3 h-3 absolute bottom-0 left-0 rounded-full"
