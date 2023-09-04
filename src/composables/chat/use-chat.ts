@@ -13,8 +13,8 @@ export default function () {
   const muted = ref(false);
 
   const audioMessage = new Audio("audio.mp3");
-  // const socket = io("https://xod-chat-32pzq.ondigitalocean.app/");
-  const socket = io("http://localhost:3001");
+  const socket = io("https://xod-chat-32pzq.ondigitalocean.app/");
+  // const socket = io("http://localhost:3001");
   socket.on("welcome", (user: Sender) => {
     me.value = user;
   });
