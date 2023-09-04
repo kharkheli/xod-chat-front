@@ -20,6 +20,7 @@ const props = defineProps({
 const emit = defineEmits<{
   (e: "update:modelValue", v: string): void;
   (e: "submit"): void;
+  (e: "focus"): void;
 }>();
 
 function handleInputChange() {
@@ -68,6 +69,7 @@ watch(
       @input="handleInputChange"
       ref="areaRef"
       :placeholder="placeholder"
+      @focus="$emit('focus')"
       cols="20"
       rows="1"
       class="text-gray-300 leading-6 bg-transparent w-full outline-none resize-none"
