@@ -21,6 +21,7 @@ const {
   muted,
   userCount,
   disconnect,
+  readMessage,
 } = useChat();
 
 function handleMessageSubmit() {
@@ -145,6 +146,7 @@ watchEffect(() => {
       >
         <div class="w-full py-2 h-full flex items-center">
           <TextArea
+            @focus="readMessage"
             :disabled="status !== 'connected'"
             @submit="handleMessageSubmit"
             v-model="text"
