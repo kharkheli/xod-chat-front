@@ -36,6 +36,7 @@ function handleKeyDown(e: KeyboardEvent) {
     }
     e.preventDefault();
     emit("submit");
+    areaRef.value?.focus();
   }
 }
 
