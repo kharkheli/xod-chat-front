@@ -160,6 +160,7 @@ watchEffect(() => {
         </div>
         <div class="pl-2 h-[3.5rem] flex items-center">
           <Icon
+            @click="handleMessageSubmit"
             class="h-6 w-6 text-blue-400 cursor-pointer"
             icon="fluent:send-16-filled"
           />
